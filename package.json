@@ -1,0 +1,37 @@
+{
+  "name": "submetering-backend",
+  "version": "1.0.0",
+  "description": "Back-end server for submetering system",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "dev": "nodemon --exec 'ts-node' src/main.ts",
+    "test": "jest --watchAll --collectCoverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/submetering-icesi/submetering-backend.git"
+  },
+  "author": "submetering-icesi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/submetering-icesi/submetering-backend/issues"
+  },
+  "homepage": "https://github.com/submetering-icesi/submetering-backend#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/mqtt": "^2.5.0",
+    "@types/node": "^20.12.7",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mqtt": "^5.5.2",
+    "pg": "^8.11.5",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
+  }
+}
