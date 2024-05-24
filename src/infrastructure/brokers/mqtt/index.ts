@@ -2,7 +2,7 @@ import * as mqtt from 'mqtt';
 import { IBrokerUseCases } from '../../../application/use-cases/broker';
 
 export class MqttBroker implements IBrokerUseCases {
-    protected client: any;
+    protected client: mqtt.MqttClient;
 
     constructor(){
         this.client = mqtt.connect(process.env.MQTT_URL || 'mqtt://localhost');

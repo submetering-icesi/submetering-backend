@@ -10,5 +10,10 @@ export default function SubmeterRouter(submeterUseCases: ICommonUseCases<Submete
         res.status(200).json(submeters);
     });
 
+    router.get('/get/:name', async (req: Request, res: Response) => {
+        const submeter = await submeterUseCases.getOne({ name: req.params.name });
+        res.status(200).json(submeter);
+    });
+
     return router;
 }

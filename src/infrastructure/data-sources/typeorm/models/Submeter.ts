@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 import { Submeter } from "../../../../domain/entities/Submeter";
 
 @Entity()
@@ -7,6 +7,7 @@ export class TypeORMSubmeter implements Submeter {
     id!: string;
 
     @Column()
+    @Index({ unique: true })
     name!: string;
 
     @Column()

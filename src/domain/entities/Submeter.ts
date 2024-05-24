@@ -1,5 +1,5 @@
 export interface Submeter {
-    id: string;
+    id?: string;
     name: string;
     location: string;
 }

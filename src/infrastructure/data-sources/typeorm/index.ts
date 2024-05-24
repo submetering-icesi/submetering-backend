@@ -4,11 +4,17 @@ import { ICommonUseCases } from "../../../application/use-cases/common"
 import { Submeter } from "../../../domain/entities/Submeter"
 import { TypeORMMeasureRepository } from "./repositories/typeorm-measure-repository"
 import { TypeORMSubmeterRepository } from "./repositories/typeorm-submeter-repository"
+import { Registry } from "../../../domain/entities/Registry"
+import { TypeORMRegistryRepository } from "./repositories/typeorm-registry-repository"
+import { Topic } from "../../../domain/entities/Topic"
+import { TypeORMTopicRepository } from "./repositories/typeorm-topic-repository"
 
 export class TypeORMDataSource {
     protected dataSource: DataSource
     measures: IMeasurementUseCases
     submeters: ICommonUseCases<Submeter>
+    registries: ICommonUseCases<Registry>
+    topics: ICommonUseCases<Topic>
 
     constructor() {
         this.dataSource = new DataSource({
@@ -25,15 +31,16 @@ export class TypeORMDataSource {
         })
         this.measures = new TypeORMMeasureRepository(this.dataSource)
         this.submeters = new TypeORMSubmeterRepository(this.dataSource)
+        this.registries = new TypeORMRegistryRepository(this.dataSource)
+        this.topics = new TypeORMTopicRepository(this.dataSource)
     }
 
-    initialize() {
-        this.dataSource.initialize()
-            .then(() => {
-                console.log("Data Source has been initialized!")
-            })
-            .catch((err) => {
-                console.error("Error during Data Source initialization", err)
-            })
+    async initialize() {
+        try {
+            this.dataSource.initialize()
+            console.log("Base de datos inicializada")
+        } catch (error) {
+            console.error(error)
+        }
     }
 }

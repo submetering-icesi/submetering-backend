@@ -1,8 +1,9 @@
 export interface Measure {
-    id: string;
+    id?: string;
     type: string;
     value: number;
     unit: string;
-    timestamp: string;
+    timestamp: number;
     submeter: string;
+    registry: string;
 }

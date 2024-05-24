@@ -1,7 +1,7 @@
 export interface ICommonUseCases<T> {
     add: (entity: T) => Promise<T>;
-    update: (id: string, entity: T) => Promise<T>;
-    delete: (id: string) => any;
-    getById: (id: string) => Promise<T | null>;
+    update: (filter: Partial<T>, entity: T) => Promise<T>;
+    delete: (filter: Partial<T>) => any;
+    getOne: (filter: Partial<T>) => Promise<T | null>;
     getAll: () => Promise<T[]>;
 }
