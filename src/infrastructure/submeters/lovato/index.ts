@@ -4,7 +4,6 @@ import { IMeasurementUseCases } from "../../../application/use-cases/measurement
 import { Measure } from "../../../domain/entities/Measure";
 import { Registry } from "../../../domain/entities/Registry";
 import { Submeter } from "../../../domain/entities/Submeter";
-import { Topic } from "../../../domain/entities/Topic";
 import { BrokerMessage, BrokerMessageMetering } from "../../../domain/types/message";
 
 export class MeteringListener implements IListenerUseCases<BrokerMessageMetering> {
@@ -47,9 +46,7 @@ export class MeteringListener implements IListenerUseCases<BrokerMessageMetering
                         const measure: Measure = {
                             submeter: submeter?.id || "",
                             timestamp: message.timestamp,
-                            type: message.type,
-                            unit: registry?.unit || "",
-                            registry: registry.registry,
+                            registry: registry.id || "",
                             value: this.convertRegistersToFloat32(message.value)/registry.format
                         }
                         this.measureRepository.add(measure);
