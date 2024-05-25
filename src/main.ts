@@ -8,6 +8,7 @@ import { MqttBroker } from './infrastructure/brokers/mqtt';
 import { MeteringListener } from './infrastructure/submeters/lovato';
 import RegistryRouter from './presentation/routers/registry-router';
 import TopicRouter from './presentation/routers/topic-router';
+import { errorHandler } from './presentation/middlewares/error-handler';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ dotenv.config();
     server.listen(process.env.PORT, () => {
         console.log(`Server is running on http://localhost:${process.env.PORT}`);
     });
+    server.use(errorHandler);
     setTimeout(() => {
         BrokerInitWatch(broker, dataSource.topics, meteringListener);
     }, 3000)
