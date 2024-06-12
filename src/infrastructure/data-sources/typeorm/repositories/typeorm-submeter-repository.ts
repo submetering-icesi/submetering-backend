@@ -46,4 +46,9 @@ export class TypeORMSubmeterRepository implements ICommonUseCases<Submeter> {
     getAll() : Promise<Submeter[]> {
         return this.submeterRepository.find();
     }
+
+    getAllByFilter(filter: Partial<Submeter>) : Promise<Submeter[]> {
+        const whereCondition = this.getWhereCondition(filter);
+        return this.submeterRepository.find({ where: whereCondition });
+    }
 }
