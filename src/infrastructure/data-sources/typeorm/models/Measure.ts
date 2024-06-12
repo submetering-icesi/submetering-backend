@@ -8,14 +8,8 @@ export class TypeORMMeasure implements Measure {
     @PrimaryGeneratedColumn("uuid")
     id!: string;
 
-    @Column()
-    type!: string;
-
     @Column({ type: "decimal" })
     value!: number;
-
-    @Column()
-    unit!: string;
 
     @Column({ type: "bigint" })
     timestamp!: number;

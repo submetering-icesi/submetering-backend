@@ -9,6 +9,9 @@ export class TypeORMRegistry implements Registry {
     id!: string;
 
     @Column()
+    name!: string;
+
+    @Column()
     registry!: string;
 
     @Column()

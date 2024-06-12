@@ -9,6 +9,7 @@ import { MeteringListener } from './infrastructure/submeters/lovato';
 import RegistryRouter from './presentation/routers/registry-router';
 import TopicRouter from './presentation/routers/topic-router';
 import { errorHandler } from './presentation/middlewares/error-handler';
+import MeterRouter from './presentation/routers/meter-router';
 
 dotenv.config();
 
@@ -21,10 +22,12 @@ dotenv.config();
     const brokerMiddleware = BrokerRouter(broker, meteringListener, dataSource.topics);
     const registryMiddleware = RegistryRouter(dataSource.registries, dataSource.submeters);
     const topicMiddleware = TopicRouter(dataSource.topics);
+    const measureMiddleware = MeterRouter(dataSource.measures, dataSource.registries);
     server.use('/submeter', submeterMiddleware);
     server.use('/broker', brokerMiddleware);
     server.use('/registry', registryMiddleware);
     server.use('/topic', topicMiddleware);
+    server.use('/measure', measureMiddleware);
     server.listen(process.env.PORT, () => {
         console.log(`Server is running on http://localhost:${process.env.PORT}`);
     });

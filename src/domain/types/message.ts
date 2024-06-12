@@ -4,6 +4,7 @@ export type BrokerMessage =
 export type BrokerMessageRegister = {
     type: "register"
     name: string
+    location: string
     timestamp: number
 }
 

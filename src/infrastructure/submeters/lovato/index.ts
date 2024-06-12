@@ -27,7 +27,7 @@ export class MeteringListener implements IListenerUseCases<BrokerMessageMetering
             case 'register':
                 this.submeterRepository.getOne({ name: message.name }).then((submeter) => {
                     if (!submeter) {
-                        this.submeterRepository.add({ name: message.name, location: message.name })
+                        this.submeterRepository.add({ name: message.name, location: message.location })
                     }
                 })
                 break;

@@ -34,6 +34,6 @@ export function BrokerInitWatch(brokerUseCases: IBrokerUseCases, topicUseCases: 
                 listenerUseCases.watch(message);
             });
         });
-        brokerUseCases.publish('server-building-n', { action: 'register' });
+        brokerUseCases.publish('server-submetering', { action: 'register' });
     });
 }
