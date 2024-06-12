@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import cors from 'cors';
 import server from './server';
 import "reflect-metadata";
 import { TypeORMDataSource } from './infrastructure/data-sources/typeorm';
@@ -10,10 +11,12 @@ import RegistryRouter from './presentation/routers/registry-router';
 import TopicRouter from './presentation/routers/topic-router';
 import { errorHandler } from './presentation/middlewares/error-handler';
 import MeterRouter from './presentation/routers/meter-router';
+import { Request } from 'express';
 
 dotenv.config();
 
 (async () => {
+    server.use(cors<Request>())
     const dataSource = new TypeORMDataSource();
     await dataSource.initialize();
     const broker = new MqttBroker();

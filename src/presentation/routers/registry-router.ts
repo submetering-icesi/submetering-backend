@@ -22,5 +22,10 @@ export default function RegistryRouter(registryUseCases: ICommonUseCases<Registr
         res.status(200).json(registry);
     });
 
+    router.get('/get/:submeter', async (req, res) => {
+        const registries = await registryUseCases.getAllByFilter({ submeter: req.params.submeter });
+        res.status(200).json(registries);
+    });
+
     return router;
 }

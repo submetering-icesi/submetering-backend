@@ -124,4 +124,9 @@ export class TypeORMMeasureRepository implements IMeasurementUseCases {
 
     return meteringUnits;
   }
+
+  async getAllByFilter(filter: Partial<Measure>) : Promise<Measure[]> {
+    const whereCondition = this.getWhereCondition(filter);
+    return this.measureRepository.find({ where: whereCondition });
+  }
 }

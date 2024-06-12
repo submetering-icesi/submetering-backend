@@ -4,4 +4,5 @@ export interface ICommonUseCases<T> {
     delete: (filter: Partial<T>) => any;
     getOne: (filter: Partial<T>) => Promise<T | null>;
     getAll: () => Promise<T[]>;
+    getAllByFilter: (filter: Partial<T>) => Promise<T[]>;
 }

@@ -53,4 +53,8 @@ export class TypeORMRegistryRepository implements ICommonUseCases<Registry> {
     getAll() : Promise<Registry[]> {
         return this.registryRepository.find();
     }
+    getAllByFilter(filter: Partial<Registry>): Promise<Registry[]> {
+        const whereCondition = this.getWhereCondition(filter);
+        return this.registryRepository.find({ where: whereCondition });
+    }
 }
